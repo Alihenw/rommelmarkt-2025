@@ -1,6 +1,7 @@
 [build]
-  publish = "public"
-  functions = "netlify/functions"
+  base = "rommelmarkt"
+  publish = "rommelmarkt/public"
+  functions = "rommelmarkt/netlify/functions"
 
 [[redirects]]
   from = "/*"
