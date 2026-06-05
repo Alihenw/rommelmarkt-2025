@@ -1,0 +1,14 @@
+{
+  "name": "rommelmarkt-reservaties",
+  "version": "1.0.0",
+  "description": "Online reservatiesysteem voor de jaarlijkse rommelmarkt",
+  "scripts": {
+    "dev": "netlify dev"
+  },
+  "dependencies": {
+    "@mollie/api-client": "^3.7.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  }
+}
