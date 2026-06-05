@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Betaling bevestigd – Rommelmarkt 2025</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: #F1EFE8;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,.1);
+    }
+    .icon { font-size: 3.5rem; margin-bottom: 1rem; }
+    h1 { font-size: 1.3rem; font-weight: 600; margin-bottom: 8px; color: #1A1A18; }
+    p { font-size: 0.88rem; color: #888780; line-height: 1.7; margin-bottom: 1.25rem; }
+    .spots {
+      background: #EAF3DE;
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #3B6D11;
+      margin-bottom: 1.5rem;
+    }
+    a.btn {
+      display: block;
+      padding: 12px 20px;
+      background: #378ADD;
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background .15s;
+    }
+    a.btn:hover { background: #185FA5; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">🎉</div>
+    <h1>Betaling geslaagd!</h1>
+    <p>Jouw standplaats(en) zijn gereserveerd en betaald. Je ontvangt een bevestigingsmail met alle details.</p>
+    <div class="spots" id="spots-info">Standplaatsen worden geladen…</div>
+    <p>Tot op de rommelmarkt! 🏪</p>
+    <a class="btn" href="/">Terug naar de reservatiepagina</a>
+  </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const spots = params.get('spots');
+    const el = document.getElementById('spots-info');
+    if (spots) {
+      el.textContent = '✅ Gereserveerd: ' + spots.replace(/\+/g, ', ');
+    } else {
+      el.textContent = '✅ Reservatie bevestigd';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rommelmarkt 2025 – Standplaatsen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="logo">🏪</div>
+      <div class="header-text">
+        <h1>Rommelmarkt 2025</h1>
+        <p>Reserveer jouw standplaats online &mdash; max. 2 per persoon</p>
+      </div>
+      <div id="phase-badge" class="phase-badge phase-resident">Voorrangsperiode inwoners</div>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="kaart" onclick="showTab('kaart')">
+        <span class="tab-icon">🗺</span> Kaart
+      </button>
+      <button class="tab" data-tab="inschrijving" onclick="showTab('inschrijving')">
+        <span class="tab-icon">📋</span> Inschrijving
+      </button>
+      <button class="tab" data-tab="admin" onclick="showTab('admin')">
+        <span class="tab-icon">🔐</span> Beheer
+      </button>
+    </nav>
+
+    <!-- KAART TAB -->
+    <div id="tab-kaart" class="tab-content active">
+      <div class="map-card">
+        <div class="map-toolbar">
+          <span class="map-title">Interactieve plattegrond</span>
+          <div class="legend">
+            <div class="legend-item"><div class="dot dot-vrij"></div>Vrij</div>
+            <div class="legend-item"><div class="dot dot-bezet"></div>Bezet</div>
+            <div class="legend-item"><div class="dot dot-sel"></div>Geselecteerd</div>
+            <div class="legend-item"><div class="dot dot-mine"></div>Jouw plaatsen</div>
+          </div>
+        </div>
+        <div class="map-body">
+          <div class="street-section">
+            <div class="street-name">🏘 Dorpsstraat</div>
+            <div class="street-grid" id="street-dorps-a"></div>
+            <div class="street-road">◀ DORPSSTRAAT ▶</div>
+            <div class="street-grid" id="street-dorps-b"></div>
+          </div>
+          <div class="street-section" style="margin-top:2rem">
+            <div class="street-name">🏘 Marktplein</div>
+            <div class="street-grid" id="street-markt-a"></div>
+            <div class="street-road">◀ MARKTPLEIN ▶</div>
+            <div class="street-grid" id="street-markt-b"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Beschikbaar</div>
+          <div class="stat-val" id="stat-vrij">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Bezet</div>
+          <div class="stat-val" id="stat-bezet">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Geselecteerd</div>
+          <div class="stat-val" id="stat-sel">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Te betalen</div>
+          <div class="stat-val" id="stat-price">€0</div>
+        </div>
+      </div>
+
+      <div class="info-banner banner-info">
+        <span>💡</span>
+        <span>Klik op een <strong>groene standplaats</strong> om ze te selecteren (max. 2). Ga daarna naar het tabblad <strong>Inschrijving</strong> om te betalen.</span>
+      </div>
+
+      <button class="btn-primary" onclick="showTab('inschrijving')" id="btn-naar-inschrijving" disabled>
+        Ga naar inschrijving →
+      </button>
+    </div>
+
+    <!-- INSCHRIJVING TAB -->
+    <div id="tab-inschrijving" class="tab-content">
+      <div id="inschrijving-body"></div>
+    </div>
+
+    <!-- ADMIN TAB -->
+    <div id="tab-admin" class="tab-content">
+      <div id="admin-login">
+        <div class="form-card">
+          <h2>Beheerderstoegang</h2>
+          <p class="form-desc">Enkel voor organisatoren van de rommelmarkt.</p>
+          <div class="field">
+            <label>Wachtwoord</label>
+            <input type="password" id="admin-pw" placeholder="••••••••" onkeydown="if(event.key==='Enter')adminLogin()">
+          </div>
+          <button class="btn-primary" onclick="adminLogin()">Inloggen</button>
+          <p class="form-hint">Demo-wachtwoord: <code>admin123</code></p>
+        </div>
+      </div>
+      <div id="admin-panel" style="display:none">
+        <div id="admin-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div id="modal-overlay" class="modal-overlay" style="display:none">
+    <div class="modal">
+      <div class="modal-icon" id="modal-icon">💳</div>
+      <h3 id="modal-title"></h3>
+      <p id="modal-body"></p>
+      <div class="modal-btns">
+        <button class="btn-sec" onclick="closeModal()">Annuleren</button>
+        <button class="btn-primary modal-btn-ok" id="modal-ok">Bevestigen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
